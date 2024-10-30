@@ -1,0 +1,1111 @@
+﻿        /* If you are using Word Press and the menus cover the Quote dialog
+            Try the following in the page:
+            <div style="display:none;">   
+                <style>
+                // Move the header to a lower z-index so the dialog is not behind it
+                @media (max-width: 767px) {
+                #main-header {z-index: 500;}
+                }
+                // Fit the larger images to small screens
+                @media only screen and (max-width: 400px) {
+                .IQlargeritemimage {max-width: 100%!important; min-height: auto!important;}
+                }
+                </style>
+                // Change the backgound colour and the text for the assets
+                <style>
+                
+                .IQmakemodel {color:white!important;}
+                .IQquotelabel {color:white!important;}
+                </style>
+            </div>
+
+        */        
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        td {
+            padding:4px;
+            border: 1px solid #ddd;
+        }
+        .ui-widget-overlay {
+            background: black !important;
+            opacity: 0.7 !important;
+            filter: Alpha(Opacity=70);
+        }
+        .ui-dialog { z-index: 1050 !important;
+        }
+        .pac-container {
+            z-index: 1051 !important;
+        }
+
+        #dialog .Zebra_DatePicker {
+            left: 1.1em;
+            margin-top: 0.8em;
+			line-height: 1.3;
+        }
+
+        #dialog .IQpickup {
+            width: 250px;
+            margin-top: 1em;
+        }
+
+        #dialog input, select {
+            padding: 8px !important;
+        }
+
+
+        .IQassetquotebtn {
+            float:right;
+            color: buttontext;
+            background-color: buttonface;
+            height: auto;
+            padding: 0 5px;
+            line-height: normal;
+        }
+
+        .IQquoteresult{
+            background: white;
+            padding: 10px;
+            margin-top: 10px;
+            border:black 1px solid;
+        }
+
+        /* Quote page tabs*/
+        .IQpackagetabs {
+            background-color:whitesmoke;
+            border: 1px solid lightgray;
+        }
+
+		.IQbookbtn{
+			padding: 4px;
+			background: coral;
+			color: white;
+			border-radius: 4px;
+			margin: 4px;
+		}
+
+        .IQpackagetabs .IQtabbutton {
+                padding: 8px 16px;
+                float: left;
+                width: auto;
+                border: none;
+                outline: none;
+                display: block;
+                white-space: normal;
+                cursor: pointer;
+                color: white;
+                background-color: coral;
+				border-width: 1px;
+				border-style: solid;
+				border-right-color: #616161;
+				border-top-color: white;		
+				border-bottom-color: #616161;
+				border-left-color: white;			
+         }
+
+       .IQpackagetabs .IQtabselected {
+            color: white!important;
+            background-color: #616161 !important;
+         }
+
+        /* Review Display*/
+            .rating {
+            float:left;
+            min-width: 116px;
+        }
+
+        /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+           follow these rules. Every browser that supports :checked also supports :not(), so
+           it doesn’t make the test unnecessarily selective */
+        .rating:not(:checked) > input {
+            position:absolute;
+            top:-9999px;
+            clip:rect(0,0,0,0);
+        }
+
+        .rating:not(:checked) > label {
+            float:right;
+            width:1em;
+            padding: 0 .1em;
+            overflow:hidden;
+            white-space:nowrap;
+            cursor:pointer;
+            font-size:120%;
+            line-height:1;
+            color:#ddd;
+            text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+        }
+
+        .rating:not(:checked) > label:before {
+            content: '★ ';
+        }
+
+        .rating > input:checked ~ label {
+            color: #f70;
+            text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+        }
+
+        .rating:not(:checked) > label:hover,
+        .rating:not(:checked) > label:hover ~ label {
+            color: gold;
+            text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+        }
+
+        .rating > input:checked + label:hover,
+        .rating > input:checked + label:hover ~ label,
+        .rating > input:checked ~ label:hover,
+        .rating > input:checked ~ label:hover ~ label,
+        .rating > label:hover ~ input:checked ~ label {
+            color: #ea0;
+            text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+        }
+
+        .rating > label:active {
+            position:relative;
+            top:2px;
+            left:2px;
+        }
+
+
+        /* Review Editing*/
+        .Star
+        {
+            background-image: url(https://www.instant-quote.co/images/Star.gif);
+            height: 17px;
+            width: 17px;
+        }
+        .WaitingStar
+        {
+            background-image: url(https://www.instant-quote.co/images/WaitingStar.gif);
+            height: 17px;
+            width: 17px;
+        }
+        .FilledStar
+        {
+            background-image: url(https://www.instant-quote.co/images/FilledStar.gif);
+            height: 17px;
+            width: 17px;
+        }
+        .IQnowrap {
+            white-space: nowrap;
+            padding:6px;
+        }
+        .IQstats {
+            overflow: hidden;
+            background: #f2f2f2;
+            background: -webkit-linear-gradient(top,#eee,#f6f6f6);
+            background: linear-gradient(to bottom,#eee,#f6f6f6);
+            background-color: #f3f3f3;
+            height: 17px;
+            min-width: 160px;
+            padding: 1px;
+        }
+        .IQstats .IQstats-bar {
+        border-radius: 1px;
+        background: #ffba00;
+        background: -webkit-linear-gradient(top,#ffce00,#ffa700); 
+        background: linear-gradient(to bottom,#ffce00,#ffa700); 
+        background-color: #ffce00;
+        height:20px;
+        }
+        .IQredlink {
+                color: red;
+        }
+        .review-row {
+          background-color: whitesmoke;
+          color: black;
+        }
+
+        .reviewsdiv {
+            padding:20px;
+        }
+        .allreviewscontainer {
+            max-width:400px;
+            width: 98vw;
+        }
+        .innerreviewright {
+            float:right;
+            max-width:300px;
+            width: 98vw;
+        }
+        .innerreviewleft {
+            float:left;
+            max-width:300px;
+            width: 98vw;
+            clear:left;
+        }
+
+        .timepicker {
+            vertical-align:middle;
+        }
+        .timepicker img {
+            vertical-align: bottom;
+        }
+        .timepicker input {
+            max-height: 24px;
+            border-radius: 0px;
+            font-size: 7pt;
+            text-align:center;
+            padding:0px;
+        }
+
+        input[type=checkbox].css-checkbox {
+            height: 16px;
+            width: 16px;
+            float: right;
+            cursor: pointer;
+            margin-top: auto;
+            margin-bottom: auto;           
+        }
+
+        .IQquotelabel{
+            float:right;
+            cursor:pointer;
+            margin-top: 3px;
+            color:#e6e6e6;
+            padding-right:3px;
+        }
+
+        input {
+            border: 1px solid rgba(0, 0, 0, 0.5);
+        }
+
+        input, textarea {
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 8px;
+            border: 1px solid #bbb;
+            font-size: 14px;
+            color: #555;
+            background-color: #FFFFCC;
+        }
+        input, select {
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 2px;
+            border: 1px solid #bbb;
+            font-size: 14px;
+            color: #555;
+        }
+        input.notfound {
+                border: 2px solid rgba(255, 0, 0, 0.4);
+        }
+        label {
+            display: inline;
+        }
+        #cmbpickup {
+            min-width: 60px;
+        }
+
+        #map-canvas {
+            height: 300px;
+            position:relative;
+            max-width: 89%;
+            box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+        }
+
+        .IQasset {
+            background-color: #031451; /*darkslategray;*/
+            border-style: solid;
+            border-width: 1px;
+            text-align: left;
+            vertical-align: middle;
+            color: #333;
+            display: inline-block;
+            margin: 10px;
+            /*box-shadow: 10px 10px 5px #888888;*/
+            box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+        }
+
+        .IQassetinfoimg {
+            box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+            margin-bottom: 20px;
+            width:90%;
+
+        }
+        /* For dialog boxes */
+        .IQassetinfodlgpkgimg {
+            box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+            margin-bottom: 20px;
+            width:90%;
+
+        }
+        /* For remote datasheet */
+        .IQassetinfopkgimg {
+            box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+        .IQremoteAssetPackage {
+            max-width: 800px;
+        }
+        .IQassetinfothumb {
+            box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+            margin-bottom: 20px;
+            width: 30%;
+            display:inline;
+            margin-left:6px;
+            cursor:pointer;
+        }
+
+        .IQassetinfothumbdiv {
+            width:90%;
+            margin:auto;
+        }
+
+        .IQthumbtab {
+            text-align: left;
+            font-size: 85%;
+        }
+
+        #IQcalendar {
+            font-size: small;
+            font-family: Tahoma, Geneva, sans-serif;
+            min-height: 300px;
+            max-width: 290px;
+            padding: 10px;
+            float: right;
+            text-align: left;
+        	background-color: whitesmoke;
+        }
+        #IQcontent {
+            margin-left: auto;
+            margin-right: auto;
+            min-height: 350px;
+            background-color: unset;
+            color:black;
+        }
+
+        .IQheadline {
+            min-width: 156px;
+            overflow-x: overlay;
+        }
+
+        .IQdataicon {
+            float:right;
+            height:24px;
+            cursor:pointer;
+            margin: -3px 0 0 0;
+        }
+
+        .IQdivfilter {
+            width:350px;
+            /*background-color:seagreen;
+            color:white;*/
+            color:black;
+            padding:4px;
+            border-radius:3px;
+            text-align:left;
+            margin:2px;
+            float:left;
+        }
+        .IQdivfilterselect {
+            color:black;
+        }
+        .IQform {
+            min-width: 244px;
+            background-color: unset;
+            padding: 6px;
+        }
+
+
+        #IQhelpline {
+            color: #009933;
+            font-size: Medium;
+            float: right;
+        }
+        .IQinfo {
+            min-width: 156px;
+            max-width: 500px;
+            font-size: small;
+            margin-bottom: 10px;
+        }
+        .IQitemimage {
+            border: 6px solid #FFF;
+            text-align: center;
+            vertical-align: middle;
+            max-width: 230px;
+            min-height: 120px;
+            clear: both;
+        }
+        .IQlargeritemimage {
+            border: 6px solid #FFF;
+            text-align: center;
+            vertical-align: middle;
+            max-width: 300px;
+            min-height: 180px;
+            clear: both;
+        }
+        .IQloading {
+            position:fixed;
+            top:0px;
+            left:0px;
+            right:0px;
+            bottom:0px;
+            z-index:1001;
+            vertical-align: middle;
+            text-align: center;
+            font: 0/0 a;
+            display:none;
+        }
+        .IQloading:before {
+            content: ' ';
+            display: inline-block;
+            /*vertical-align: middle;  /* vertical alignment of the inline element */
+            /*height: 100%;*/
+            position:fixed;
+            top:0px;
+            left:0px;
+            right: 0px;
+            bottom:0px;
+            background-color:white;
+            opacity:0.5;
+        }
+		.spinnerimg {
+			background-image: url(images/ajax-loader.gif);
+			background-repeat: no-repeat;
+		}
+        #bigspinner {
+            display: block;
+            /*vertical-align: middle; */
+            font: 16px/1 Arial sans-serif;
+            top: 50%;
+            bottom: 50%;
+            /*left: calc(50% - 33px);*/
+            left: 50%;
+            position: fixed;
+        }
+
+        .IQlongtextbox {
+            width: 90%;
+            min-width: 80px;
+        }
+
+        .IQmakemodel {
+            font-size: 12px;
+            text-align: left;
+            padding: 2px;
+            margin:4px 0 1px 4px;
+            height: 24px;
+            color: #e6e6e6;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .IQmakemodel input[type="checkbox"]{
+        cursor: pointer;
+        background: #34495E;
+        border-radius: 1px;
+        box-sizing: border-box;
+        position: relative;
+        width: 22px;
+        height: 22px;
+        border-width: 0;
+        transition: all .3s linear;
+        }
+        .IQmakemodel input[type="checkbox"]:focus{
+          outline: 0 none;
+          box-shadow: none;
+        }
+
+        .IQmakemodeldir {
+            font-size: 12px;
+            text-align: left;
+            min-height: 36px;
+            color: whitesmoke;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .IQmakemodeldir a {
+            color: #68dc22;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+        }
+        .IQmakemodeldir a:focus, a:hover {
+            color: #60f108;
+        }
+
+
+        .IQmediumtextbox {
+            max-width: 100px;
+            background-color: #FFFFCC;
+            min-width: 80px;
+            width: 80%;
+        }
+
+        .IQmiddle {
+            vertical-align: middle;
+            margin:1px 4px 5px 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            position: absolute;
+            left: 0;
+            right: 20px;
+        }
+
+        .IQmiddleLower {
+            vertical-align: middle;
+            padding-top: 2px;
+            margin-left:3px;
+            margin-top:2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            position: absolute;
+            left: 0;
+            right: 60px;
+            width: 120px;
+        }
+        .IQprogress {
+            max-width: 240px;
+        }
+
+        .IQquotebutton{
+            color:white;
+            background-color:red;
+            border: 5px solid white;
+            height:50px;
+            min-width:120px;
+            vertical-align: middle;
+            padding: 4px 4px;
+            float: right;
+        }
+        .IQquotebuttondiv {
+          /*  min-height:100px;  for iPad */
+        }
+
+
+        #IQtransport {
+            font-size: small;
+            font-family: Tahoma, Geneva, sans-serif;
+            min-width: 200px;
+            min-height: 200px;
+            padding: 4px;
+            line-height: normal;
+            text-align: left;
+            clear:left;
+        }
+		.IQreset{
+			float:right;color:lightgray;
+		}
+        .IQselection {
+            float: right;
+        }
+        /* Admin site address ----------- */
+        .IQAdminAddress {
+            min-width:400px;
+            max-width:500px;
+        }
+        /* Smartphones (portrait) ----------- */
+        @media only screen and (max-width : 320px) {
+            .IQlargeritemimage {
+                width: 260px;
+            }
+            .IQitemimage {
+                max-width: 260px;
+            }
+            #map-canvas {
+            height: 250px;
+            position:relative;
+            left:12px;
+            max-width: 260px;           
+            }
+            #IQcalendar {
+                width:100%;
+                float:left;
+                max-width: 350px;
+            }
+            .IQdivfilter {
+                width: 94%;
+                color: black;
+                padding: 4px;
+                border-radius: 3px;
+                clear:both;
+                margin-right:4px;
+            }
+
+            .IQalwaysvisible {
+                position: fixed;
+                border: solid 1px #e1e1e1;
+                vertical-align: middle;
+                background: #ffdab9;
+                text-align: center;
+                bottom: 10px;
+                left: 10px;
+                z-index:100;
+            }
+            .IQverbose {
+            display: none;
+            }
+            .IQstats {
+                min-width: 100px;
+                padding: 1px;
+            }
+                .reviewsdiv {padding:4px;}
+        }
+
+        @media only screen and (min-width : 570px) and (max-width : 650px) {
+            .IQlargeritemimage {
+                max-width: 100%;
+            }
+
+        }
+            
+
+                /* iPhone6 (portrait) ----------- */
+        @media only screen and (min-width : 321px)  and (max-width : 604px){
+            /*  .IQlargeritemimage {
+                max-width: 100%;
+            }*/
+            .IQitemimage {
+                max-width: 100%;
+            }
+             #map-canvas {
+            height: 250px;
+            position:relative;
+            left:12px;
+            max-width: 92%;
+            }
+            #IQcalendar {
+                width:100%;
+                float:none;
+                max-width:none;
+            }
+            .IQdivfilter {
+                width: 96%;
+                color: black;
+                padding: 4px;
+                border-radius: 3px;
+                clear:both;
+                margin-right:4px;
+            }
+            .IQalwaysvisible {
+                position: fixed;
+                border: solid 1px #e1e1e1;
+                vertical-align: middle;
+                background: #ffdab9;
+                text-align: center;
+                bottom: 10px;
+                left: 10px;
+                z-index:100;
+            }
+            .IQverbose {
+                display: none;
+            }
+            .IQCalendarHorizontal{
+                float:none;
+            }
+            .IQstats {
+                min-width: 100px;
+                padding: 1px;
+            }
+                .reviewsdiv {padding:4px;}
+        }
+
+
+
+       /* Smartphones (portrait and landscape) ----------- 
+        @media only screen and (min-width : 635px) and (max-device-width : 599px)  {
+            .IQlargeritemimage {
+                width: 260px;
+            }
+            .IQitemimage {
+                max-width: 176px;
+            }
+             #map-canvas {
+            height: 250px;
+            position:relative;
+            left:12px;
+            max-width: 260px;
+            }
+            #IQcalendar {
+                width:100%;
+                float:none;
+                max-width: 350px;
+            }
+            .IQdivfilter {
+                width: 96%;
+                color: black;
+                padding: 4px;
+                border-radius: 3px;
+                clear:both;
+                margin-right:4px;
+            }
+             .IQalwaysvisible {
+                position: fixed;
+                border: solid 1px #e1e1e1;
+                vertical-align: middle;
+                background: #ffdab9;
+                text-align: center;
+                bottom: 10px;
+                left: 10px;
+                z-index:100;
+            }
+
+        }
+        /* Smartphones (portrait and landscape) ----------- 
+        @media only screen and (min-device-width : 600px) and (max-device-width : 603px) {
+            .IQlargeritemimage {
+                width: 250px;
+            }
+            .IQitemimage {
+                max-width: 250px;
+            }
+             #map-canvas {
+            height: 250px;
+            position:relative;
+            left:12px;
+            max-width: 250px;
+            }
+            #IQcalendar {
+                width:100%;
+                float:none;
+                max-width: 350px;
+            }
+            .IQdivfilter {
+                width: 96%;
+                color: black;
+                padding: 4px;
+                border-radius: 3px;
+                clear:both;
+                margin-right:4px;
+            }
+
+        }*/
+        /* Nexus 7 (portrait and landscape) ----------- */
+        @media only screen and (min-device-width : 604px) and (max-device-width : 799px) {
+                .IQlargeritemimage {
+                width: 350px;
+            }
+                 #map-canvas {
+            height: 250px;
+            position:relative;
+            left:12px;
+            max-width: 312px;
+           /* max-width: 96%;*/
+            }
+                #IQcalendar {
+                float:right;
+                max-width: 300px;
+                margin-left: 12px;
+            }
+                .IQdivfilter {
+                /*width: 240px;*/
+                color: black;
+                padding: 4px;
+                border-radius: 3px;
+                clear:none;
+            }
+                .IQCalendarHorizontal{
+                float:none;
+            }
+
+        }
+
+        /* Desktops and laptops ----------- */
+        @media only screen  and (min-width : 800px) {
+            .IQlargeritemimage {
+                width: 300px;
+            }
+             #map-canvas {
+            height: 250px;
+            position:relative;
+            left:12px;
+            max-width: 312px;
+            /*max-width: 97%;*/
+            }
+                #IQcalendar {
+                float:right;
+                max-width: 350px;
+                margin-left: 12px;
+            }
+                .IQdivfilter {
+               /* width: 362px;*/
+                color: black;
+                padding: 4px;
+                border-radius: 3px;
+                clear:none;
+            }
+                .IQCalendarHorizontal{
+                float:none;
+            }
+
+        }
+
+        .IQContentHorizontal #IQcalendar {
+            float: left !important;
+            max-width: none !important; 
+            width:100% !important;
+            padding:4px !important; 
+            margin:0 !important;
+        }
+       .IQContentRight #IQcalendar {
+            float: left !important;
+        }
+
+       .IQContentHorizontal #IQcalendar .IQcalendarInner {
+                min-width:250px;
+                width:25%;
+                float:left;
+                padding: 8px;
+         }
+
+        .IQContentHorizontal #IQcalendar .IQform {                
+                padding: 4px;
+                margin:0;
+         }
+        .IQContentHorizontal #IQtransport{
+            clear:right !important;
+          }
+
+        .IQContentHorizontal .IQdivfilter {
+            float:right !important;
+          }
+
+        .IQContentRight #IQtransport{
+            clear:right !important;
+            padding: 10px;
+          }
+
+        .IQContentRight .IQdivfilter {
+            float:right !important;
+          }
+        /* Styling for the review page */
+        .reviewpages { color: #999; }
+        .reviewpages a, .reviewpages .cpb { text-decoration:none;float: left; padding: 2px 5px 2px; border: 1px solid #ddd;background: #ffffff;margin:0 2px; font-size:14px; color:#000;}
+        .reviewpages a:hover { background-color: #E61636; color:#fff;border:1px solid #E61636; text-decoration:none;}
+        .reviewpages .cpb { font-weight: bold; color: #fff; background: #E61636; border:1px solid #E61636;}
+
+
+        .pagination a[disabled]{  color: #777;cursor: not-allowed;background-color: #fff;border-color: #ddd;}
+        .pagination span.active{z-index: 2;color: #fff;cursor: default;background-color: #337ab7;border-color: #337ab7;}
+        
+         /* Paging Styles:
+----------------------------------------------------------*/
+        #IQpage {
+           padding: 0 0 2em;
+           margin: 0 0 1em;
+           width: 72%; 
+           position: relative;
+           -moz-border-radius: 8px;
+           -webkit-border-radius: 8px;
+           /* -> weiteres siehe "inhalt.css" */
+        }
+        #IQpage .IQpagination {
+           font-size: 1.2em;
+	       font-weight: bold;
+           text-align: right;
+           margin: .1em 0 1em 0;
+           line-height: 160%;
+           white-space: normal;
+	       clear: both;
+        }
+        #IQpage .IQpagination span {
+           position: absolute;
+           left: -1000px;
+        }
+        #IQpage .IQpagination a,
+        #IQpage .IQpagination strong {
+           text-decoration: none;
+           text-align: center;
+           vertical-align: top;
+           float: left;
+           text-align: center;
+           padding: 0;
+           margin-right: 2px;
+           border: 1px solid;
+           width: 1.8em;
+           height: 1.7em;
+           -moz-border-radius: .3em;
+           -webkit-border-radius: .3em;
+        }
+        #IQpage .IQpagination a {
+           background-color: #F1F6F5;
+           /*color: inherit;*/
+           border-color: #c8d6d6 #9EADAD #9EADAD #c8d6d6;
+        }
+        #IQpage .IQpagination a:visited {
+           color: #5F7BB3;
+           background-color: #F1F6F5;
+           /*color: inherit;*/
+           text-decoration: none;
+        }
+        #IQpage .IQpagination a:hover {
+           background-color: #EDECE4;
+           color: #000;
+           border-color: #C9C7BC #808080 #808080 #C9C7BC;
+           /*-moz-appearance: toolbarbutton;*/
+        }
+        #IQpage .IQpagination a:active,
+        #IQpage .IQpagination a:focus {
+           background-color: #E0DFD7;
+           color: #000;
+           border-color: #808080 #C9C7BC #C9C7BC #808080;
+           /*-moz-appearance: toolbarbutton;*/
+        }
+        .IQpagination strong {
+           background-color: #f1eed7;
+           color: #CE4D0E;
+           border-color: #808080 #C9C7BC #C9C7BC #808080!important;
+        }
+        #IQpage .IQpagination .skip {
+           border: none;
+           background-color: transparent;
+           color: #000;
+           position: static;
+           float: left;
+           margin-right: 2px;
+           width: auto;
+           height: 1.7em;
+        }
+        #IQpage .IQpagination .skip:visited {
+           color: #5F7BB3;
+           background-color: transparent;
+        }
+        #IQpage .IQpagination .skip:hover,
+        #IQpage .IQpagination .skip:active,
+        #IQpage .IQpagination .skip:focus {
+           /*padding: 2px 4px;*/
+           background-color: transparent;
+           color: inherit;
+           -moz-appearance: none;
+        }
+        #IQpage .IQpagination img {
+           margin: .25em 0;
+        }
+        /*#IQpage .IQpagination a[title="Eine Seite vor"] {
+           margin-right: -4px;
+        }*/
+
+        #IQpage .IQpagination::after {
+           content: "."; 
+           display: block; 
+           height: 0; 
+           clear: both; 
+           visibility: hidden;
+        }
+
+        #IQpage .IQpagination span.select {
+           text-align: center;
+           position: relative;
+           left: 0;
+           float: left;
+           background-color: #F1F6F5;
+           color: inherit;
+           margin-right: 2px;
+           padding: 0;
+           border: 1px solid #c8d6d6;
+           border-color: #c8d6d6 #9EADAD #9EADAD #c8d6d6;
+           min-width: 1.8em;
+           /*min-height: 1.6em;*/
+           height: 1.7em;
+           -moz-border-radius: 4px;
+           -webkit-border-radius: 4px;
+        }
+        #IQpage .IQpagination span.select:hover {
+           background-color: #EDECE4;
+           color: #000;
+           border-color: #C9C7BC #808080 #808080 #C9C7BC;
+           /*-moz-appearance: toolbarbutton;*/
+           /*-moz-appearance: toolbarbutton;*/
+        }
+        #IQpage .IQpagination span.select::before {
+           content: "...";
+           position: static;
+           display: inline;
+           cursor: default;
+           font-weight: bold;
+           color: #036;
+           background-color: transparent;
+        }
+        #IQpage .IQpagination span.select:hover::before {
+           color: #000;
+           background-color: transparent;
+        }
+        #IQpage .IQpagination span.select::after {
+           content: url(../img/icons/ico_menuebutton.png);
+           cursor: default;
+           background-color: transparent;
+        }
+        #IQpage .IQpagination span.select:hover::after {
+           content: url(../img/icons/ico_menuebutton_hover.png);
+        }
+        #IQpage .IQpagination span.select span.option {
+           display: none;
+           position: absolute;
+           z-index: 9;
+           left: -1px;
+           text-align: left;
+           padding: 0 1em 1em;
+           margin-left: -1em;
+           width: 9.5em;
+   
+           /*background-color: #fff;
+           color: inherit;
+           border: 1px solid;
+           border-color: #c9c7bc #808080 #808080 #c9c7bc;
+           padding: 2px;*/
+        }
+        #IQpage .IQpagination span.select:hover span.option {
+           display: block;
+           /*opacity: 0.9;*/
+        }
+        #IQpage .IQpagination span.select span.option span.items {
+           position: static;
+           background-color: #fff;
+           color: inherit;
+           border: 1px solid;
+           border-color: #c9c7bc #808080 #808080 #c9c7bc;
+           padding: 2px 2px 0;
+           float: left;
+        }
+        #IQpage .IQpagination span.select span.option span.items::after {
+           content: "."; 
+           display: block; 
+           height: 0; 
+           clear: both; 
+           visibility: hidden;
+           overflow: hidden;
+        }
+        #IQpage .IQpagination span.select span.option:hover {
+           /*opacity: 1;*/
+        }
+        #IQpage ul#ext-liste+h5 {
+           margin-top: -1.5em;
+        }
+        #IQpage ul+h5+.IQpagination span.select:hover span.option {
+           bottom: 1.75em;
+           padding: 1em 1em 0;
+           z-index: 11;
+        }
+        #IQpage .IQpagination span.select span.buttons::after {
+           content: "."; 
+           display: block; 
+           height: 0; 
+           clear: both; 
+           visibility: hidden;
+        }
+        #IQpage .IQpagination > span.select a {
+           margin: 2px 1px;
+        }
+
+        /* Paging Style:
+----------------------------------------------------------*/
+        

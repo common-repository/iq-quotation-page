@@ -1,0 +1,19 @@
+/** CSS for the displayed page - Use this to override standard settings **/
+.IQalwaysvisible{   
+position: fixed;
+    border: solid 1px #e1e1e1;
+    vertical-align: middle;
+    background: #CCAC00;
+    text-align: center;
+    bottom: 10px;
+    left: 10px;
+    z-index: 100;
+}
+.IQquotebutton {
+	background-color:#CCAC00 !important;
+}
+
+.ui-dialog .ui-dialog-buttonpane button {
+	width: 80px;
+	height: 30px;
+}

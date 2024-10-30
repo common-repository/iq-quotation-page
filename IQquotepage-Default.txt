@@ -1,0 +1,372 @@
+ <!-- Layouts-->
+    <!-- class="IQContentHorizontal" gives horizontal form input-->
+    <!-- class="IQContentLeft" Puts the calendar form input to the Right-->
+    <!-- class="IQContentRight"  Puts the calendar form input to the Left-->
+	<!-- Slide out panel -->
+	<style>
+	.ui-button-icon-only {
+		text-indent: -9999px;
+	}
+	</style>
+	<div id="IQquotes" class="cd-main-content">       
+        <a href="#0" class="cd-btn js-cd-panel-trigger" data-panel="main">View Quotes</a>
+        <!-- your content here -->
+    </div>
+
+    <div id="quotespanel" class="cd-panel cd-panel--from-right js-cd-panel-main">
+        <header class="cd-panel__header">
+            <h2>&nbsp;Quotations</h2>
+            <a href="#0" class="cd-panel__close js-cd-close">Close</a>
+        </header>
+
+        <div class="cd-panel__container">
+            <div id="IQhistory" class="cd-panel__content">
+               <!-- <h2>No quotes yet</h2>-->
+            </div> <!-- cd-panel__content -->
+        </div> <!-- cd-panel__container -->
+    </div> <!-- cd-panel -->
+	<link href="https://www.instant-quote.co/Scripts/quotepanel/css/style.css" rel="stylesheet" />
+    <script src="https://www.instant-quote.co/Scripts/quotepanel/js/main.js"></script> <!-- End of slide out panel -->
+	
+	
+    <div id="IQcontent" class="IQContentHorizontal">
+
+
+     <form id="IQform" action="javascript:calcRoute();" class="IQform" style="min-width:200px;">
+        <div id="IQcalendar">
+                <div id="IQhelpline">
+                    Help line:
+                </div>
+
+                <hr style="clear:right;" />
+                <!-- new div-->
+                <div class="IQcalendarInner">
+                    <div lang="en-gb">
+                        <h4>1 &#8211; Select the event date</h4>
+                    </div>
+
+                    <div>
+                        <div>Date:</div>
+                        <div>
+                            <input id="eventdate" type="text" class="datepicker" style="width:120px;">
+                        </div>
+                    </div>
+
+
+                    <div style="float:left;">
+
+                        <div id="lbltime">
+                            Start
+                        </div>
+                        <p>
+                            <select id="cmbpickup" style=" padding 4px; border-radius 6px;">
+                                <option value="00:00">00:00</option>
+                                <option value="00:30">00:30</option>
+                                <option value="01:00">01:00</option>
+                                <option value="01:30">01:30</option>
+                                <option value="02:00">02:00</option>
+                                <option value="02:30">02:30</option>
+                                <option value="03:00">03:00</option>
+                                <option value="03:30">03:30</option>
+                                <option value="04:00">04:00</option>
+                                <option value="04:30">04:30</option>
+                                <option value="05:00">05:00</option>
+                                <option value="05:30">05:30</option>
+                                <option value="06:00">06:00</option>
+                                <option value="06:30">06:30</option>
+                                <option value="07:00">07:00</option>
+                                <option value="07:30">07:30</option>
+                                <option value="08:00">08:00</option>
+                                <option value="08:30">08:30</option>
+                                <option value="09:00">09:00</option>
+                                <option value="09:30">09:30</option>
+                                <option value="10:00">10:00</option>
+                                <option value="10:30">10:30</option>
+                                <option selected value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
+                                <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
+                                <option value="13:00">13:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="14:00">14:00</option>
+                                <option value="14:30">14:30</option>
+                                <option value="15:00">15:00</option>
+                                <option value="15:30">15:30</option>
+                                <option value="16:00">16:00</option>
+                                <option value="16:30">16:30</option>
+                                <option value="17:00">17:00</option>
+                                <option value="17:30">17:30</option>
+                                <option value="18:00">18:00</option>
+                                <option value="18:30">18:30</option>
+                                <option value="19:00">19:00</option>
+                                <option value="19:30">19:30</option>
+                                <option value="20:00">20:00</option>
+                                <option value="20:30">20:30</option>
+                                <option value="21:00">21:00</option>
+                                <option value="21:30">21:30</option>
+                                <option value="22:00">22:00</option>
+                                <option value="22:30">22:30</option>
+                                <option value="23:00">23:00</option>
+                                <option value="23:30">23:30</option>
+                            </select>
+                        </p>
+                    </div>
+
+                    <div style="float:left;">&nbsp;</div>
+
+                    <div>
+                        <div id="lblduration">
+                            Duration
+                        </div>
+                        <p>
+                            <select name="lstduration" id="lstduration" style="padding: 4px; border-radius: 6px;margin-left:4px;"></select>
+                        </p>
+                    </div>
+                    <!-- Packages DIV moved here-->
+                    <div id="packagespan"></div>
+
+                    <!-- End of Packages DIV -->
+					
+					<div id="rtripdiv" style="display:none">
+                        <div id="lblroundtrips"></div>
+                        <select name="lstroundtrips" id="lstroundtrips">
+                            <option value="0">0</option>
+                        </select>
+                    </div>
+					
+					
+                    <div id="loader" style="display:none">
+                            <p class="spinnerimg">&nbsp;</p>
+                    </div>
+
+                    <!-- End of New Div -->
+                </div>
+
+                <!-- new div-->
+                <div class="IQcalendarInner">
+                    <h4>2 &#8211; Enter your details</h4>
+
+                    <div>The email address to send the quote:</div>
+
+                    <div>
+                        <input id="emailaddress" type="email" title="We need your email address to send the quote." class="IQlongtextbox" name="email" placeholder="Email Address" required>
+                    </div>
+
+                    <div id="divfirstnameCont" style="display:none">
+                        <div id="divfirstname"></div>
+                        <div>
+                            <input id="first_name" type="text" autocomplete="on" title="Please enter your First Name." name="Firstname" maxlength="15" class="IQlongtextbox" placeholder="First name">
+                        </div>
+                    </div>
+
+                    <div id="divfamilynameCont" style="display:none">
+                        <div id="divfamilyname"></div>
+                        <div>
+                            <input id="family_name" type="text" autocomplete="on" title="Please enter your Family Name." name="Lastname" maxlength="20" class="IQlongtextbox" placeholder="Family Name">
+                        </div>
+                    </div>
+
+                    <div id="divorgnameCont" style="display:none">
+                        <div id="divorgname"></div>
+                        <div>
+                            <input id="org_name" type="text" autocomplete="on" title="Please enter your Company Name." name="Company" class="IQlongtextbox" placeholder="Organisation Name">
+                        </div>
+                    </div>
+
+                    <div id="divphoneCont">
+                        <div id="divphonenum">Telephone</div>
+                        <div>
+                            <input id="telephone" type="tel" autocomplete="on" title="Please enter your Phone number." name="Phone" class="IQlongtextbox" placeholder="Telephone">
+                        </div>
+                    </div>
+
+                    <!-- End of New Div -->
+                </div>
+
+                <div class="IQcalendarInner">
+                    <h4>3 &#8211; Booking Locations</h4>
+
+                    <div id="pickuplocation" style="display:none">
+                        <div id="addr_title_1"></div>
+                        <div>
+                            <input id="address" type="text" class="IQlongtextbox" title="This location is required." placeholder="Enter a location" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div id="ceremonylocation" style="display:none">
+                        <div id="addr_title_2"></div>
+                        <div>
+                            <input id="ceremony" type="text" class="IQlongtextbox" title="This location is required." placeholder="Enter a location" autocomplete="off" required>
+                        </div>
+                    </div>
+
+                    <div id="receptionlocation" style="display:none">
+                        <div id="addr_title_3"></div>
+                        <div>
+                            <input id="reception" type="text" class="IQlongtextbox"  title="If there is no third address, select no third address below." placeholder="Enter a location" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div id="span_same_as_Ceremony" style="display:none;max-width:250px;">
+                        <label id="noaddress3" for="chk_same_as_Ceremony"></label>
+                        <input id="chk_same_as_Ceremony" name="chk_same_as_Ceremony" type="checkbox" onchange="javascript:hidereception(this);">
+                    </div>
+					
+
+
+                    <!-- Packages moved from here -->
+
+                    <div id="diveventloc" style="display:none">
+                        <div id="lbleventlocation">Event Location:</div>
+                        <div id="divlocationselect"></div>
+                        <br>
+                    </div>
+                    <!-- End of New Div -->
+                </div>
+                <div class="IQcalendarInner">
+                    <h4>4 &#8211; Make your choice</h4>
+					
+                    <div lang="en-gb"><p>Choose the items we should quote for.</p></div>
+                    <div id="diveventtype" style="display:none">
+
+                        <div id="lbleventtype">Event Type:</div>
+                        <div id="diveventtypeselect">
+                            <select id="eventtype" title="Please select the type of event we are quoting for."></select>
+                        </div>
+                        <p></p>
+                    </div>
+
+                    <div id="divmarketing" style="display:none">
+                        <div id="lblmarketing">Where did you hear about us:</div>
+                        <div id="divmarketingselect">
+                            <select id="leadtype" title="Please tell us where you heard about us."></select>
+                        </div>
+                        <p></p>
+                    </div>
+
+                    <div id="divnotes" style="display:none">
+                        <div id="lblnotes">Notes:</div>
+                        <textarea id="txtnotes" cols="28" rows="5" maxlength="120"> </textarea>
+                        <p></p>
+                    </div>
+
+                    <div id="divforwardlead" style="display:none">
+                        <div id="lblforwardlead" style="max-width:250px;"></div>
+                        <input id="rbforwardyes" type="radio" name="forwardlead" value="1" title="If we cannot provide the service, we may be able to find the service you are looking for from one of our partners. Is it okay for us to do this?">Yes
+                        <input id="rbforwardno" type="radio" name="forwardlead" value="0">No
+                        <p></p>
+                    </div>
+
+                    <div id="divcustom1" style="display:none">
+                        <div id="lblcustom1">Custom 1</div>
+                        <input id="custom1" type="text" class="IQlongtextbox" autocomplete="off">
+                        <p></p>
+                    </div>
+
+                    <div id="divcustom2" style="display:none">
+                        <div id="lblcustom2">Custom 2</div>
+                        <input id="custom2" type="text" class="IQlongtextbox" autocomplete="off">
+                        <p></p>
+                    </div>
+
+                    <div id="divcustom3" style="display:none">
+                        <div id="lblcustom3">Custom 3</div>
+                        <input id="custom3" type="checkbox">
+                        <p></p>
+                    </div>
+
+
+                    <div class="IQquotebuttondiv">
+
+                        <div class="IQalwaysvisible">
+                            <input id="btnquote" type="submit" value="Get Your Quote" class="IQquotebutton">
+                        </div>
+						<a href="#" class="IQreset" onclick="document.getElementById('IQform').reset();">Reset</a>			
+                        <br style="clear:both;" />
+                    </div>
+
+                    <!-- End of New Div -->
+                </div>
+
+                <div id="processing" style="display: none;">                   
+                    Processing . . . .
+                    <div id="processinfo"></div>
+                </div>
+
+                <div id="progress" style="color: red;">
+                    <div id="progressinfo" class="IQprogress"></div>
+                </div>
+				<br style="clear:both" />
+
+
+        </div>
+        <!-- End of IQcalendar -->
+
+
+
+
+        <div id="IQtransport">
+            <!-- Transport Items --><br />
+            <p class="spinnerimg">&nbsp;</p>
+            Loading . . . .
+            <br />
+          <!--  <a href="https://www.instant-quote.co/">Powered by Instant-Quote.co</a> -->
+
+            <!-- End of Transport Items
+            <br style="clear:both" />-->
+        </div>
+        <!-- Map-canvas -->
+        <div id="map-canvas"></div>
+        <!-- End of Map-canvas -->
+        <div id="map_error"></div>
+
+        <br style="clear:both;" />
+      </form>
+    </div>
+
+        <!-- Initial Dialog. -->
+        <div id="preselect" style="margin-top: 1280px; width: 300px;">
+		<style> .ui-dialog .ui-dialog-buttonpane button {
+		width: 80px;
+		height: 30px;
+		}
+		</style>
+            <div id="dialog" title="Pickup Details" style="font-size: 85%;text-align:center;">
+                <div id ="addr4_div" style="text-align: center; display: none;">
+                    <input id="datepicker-static" type="hidden" readonly="readonly" style="display:none;"/>
+                    <div id="addr_title_4">Address 1</div>
+                    <input id="pickup_clone" type="text" class="IQpickup"/>
+                </div>
+                <div id="IQassettypeoption" style="display:none;">
+                    <br />
+                    <select id="asset-type" >
+                        <option value="-1" selected="selected">All</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- End of Initial Dialog. -->
+
+        <!-- Terms and Conditions. -->
+        <div id="terms" style="width: 300px;display:none;">
+            <div id="termsdialog" title="Terms &amp; Conditions" style="font-size: 85%;">
+            </div>
+        </div>
+        <!-- End of Terms and Conditions. -->
+
+        <!-- Asset Info. -->
+        <div id="aboutasset" style="margin-top:180px;display:none;">
+            <div id="assetinfo" title="Fact Sheet" style="font-size: 85%;text-align:center;">
+                <!-- replaced by Ajax request -->
+                <p class="spinnerimg">&nbsp;</p>
+            </div>
+        </div>
+
+        <!-- Ajax Spinner -->
+        <div id="IQspinerdiv" class="IQloading">
+			<p class="spinnerimg">&nbsp;</p>           
+        </div>
+
+        <!-- End of Asset Info -->
+        <!-- End of IQcontent -->
+
